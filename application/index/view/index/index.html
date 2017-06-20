@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>在线聊天室</title>
+        <meta charset="UTF-8">
+        <link rel="Shortcut Icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="__STATIC__/css/bootstrap-theme.css">
+        <link rel="stylesheet" href="__STATIC__/css/bootstrap.min.css">
+        <style type="text/css">
+            .list-group-item .badge{
+                background-color: #FF2222;
+                margin-left: 10px;
+            }
+            .textBox{
+                width: 100%;
+                height: 400px;
+                overflow-y :auto
+            }
+            .getMsg #time{
+                color: blue;
+            }
+            .sendMsg #time{
+                color: green;
+            }
+        </style>
+        <script>
+            var $user = {$Request.session.user};
+        </script>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <nav class="navbar navbar-default" role="navigation">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+
+                            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                    data-target="#example-navbar-collapse">
+                                <span class="sr-only">切换导航</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="#">onlineChat</a>
+                        </div>
+                        <div class="collapse navbar-collapse" id="example-navbar-collapse">
+                            <ul class="nav navbar-nav navbar-right"> 
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <span class="glyphicon glyphicon-user pull-right"></span>
+                                        {$Request.session.user.username}
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">个人资料</a></li>
+                                        <li><a href="#">修改密码</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/index/User/logout"><span class="glyphicon glyphicon-log-in pull-right"></span>退出聊天室</a></li> 
+                            </ul> 
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            在线用户
+                        </div>
+                        <div class="panel-body">
+                            <ul class="list-group" id="onlineList">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer navbar-fixed-bottom ">                
+            <span class="close">仅供内部测试</span>
+        </footer>
+        <div class="modal fade" id="chatBox" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            <span id="username"></span>
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="textBox" id="textBox">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="messageText" required="required">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" onclick="sendMsg()" id="sendButton">发送</button>
+                            </span>
+                        </div>                   
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal -->
+        </div>
+    </body>
+    <script src="__STATIC__/js/jquery.min.js"></script>
+    <script src="__STATIC__/js/bootstrap.min.js"></script>
+    <script src="__STATIC__/js/chat.js"></script>
+</html>

@@ -74,6 +74,14 @@ class User extends Controller {
         return $view->fetch('User/login');
     }
 
+    public function modifyPassword() {
+        $id = Session::get('user')->id;
+        $password = $_GET['newPassword'];
+        $user = Users::get($id);
+        $user->password = $password;
+        $user->save();
+    }
+
     public function modifyInfo() {
         $user = Session::get('user');
         $email = $_POST['email'];

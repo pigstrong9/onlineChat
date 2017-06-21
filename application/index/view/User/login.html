@@ -12,7 +12,6 @@
         <link rel="stylesheet" href="__STATIC__/css/login.css"/>
         <script src="__STATIC__/js/bootstrap.min.js"></script>
         <script src="__STATIC__/js/login.js"></script>
-
     </head>
     <body>
         <div class="container-fluid">
@@ -41,7 +40,7 @@
                             <button class="btn btn-default" id="loginButton" onclick="login()">登录</button>
                         </div>
                         <hr>
-                        <div style="text-align: center;"><span class="text-muted" data-toggle="modal" data-target="#register">注册成为会员<span class="glyphicon glyphicon-send"></span></span></div>
+                        <div style="text-align: center;"><a href="javascript:void(0)"><span class="text-muted" data-toggle="modal" data-target="#register">注册成为会员<span class="glyphicon glyphicon-send"></span></span></a></div>
                     </div>
                 </div>
             </div>
@@ -56,12 +55,12 @@
                     <div class="modal-body">
                         <div class="input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                            <input type="text" class="form-control" placeholder="用户名"  name="username" id="rusername">
+                            <input type="text" class="form-control" placeholder="请输入新用户名"  name="username" id="rusername">
                         </div>
                         <div class="error"><span id="rnameError"></span></div>
                         <div class="input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-                            <input type="email" class="form-control" placeholder="邮箱"  name="email" id="remail">
+                            <input type="email" class="form-control" placeholder="请输入新邮箱"  name="email" id="remail">
                         </div>
                         <div class="error"><span id="remailError"></span></div>
                         <div class="input-group">

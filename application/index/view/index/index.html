@@ -7,6 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="__STATIC__/css/bootstrap-theme.css">
         <link rel="stylesheet" href="__STATIC__/css/bootstrap.min.css">
+        <link rel="stylesheet" href="__STATIC__/css/login.css"/>
         <style type="text/css">
             .list-group-item .badge{
                 background-color: #FF2222;
@@ -53,7 +54,7 @@
                                         <b class="caret"></b>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="#">个人资料</a></li>
+                                        <li><a href="javascript:void(0)" data-toggle="modal" data-target="#modifyInfo">个人资料</a></li>
                                         <li><a href="#">修改密码</a></li>
                                     </ul>
                                 </li>
@@ -104,6 +105,38 @@
                 </div><!-- /.modal-content -->
             </div><!-- /.modal -->
         </div>
+           <div class="modal fade" id="modifyInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">修改资料</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                            <input type="text" class="form-control" placeholder="新用户名"  name="username" id="newUsername">
+                        </div>
+                        <div class="error"><span id="nameError"></span></div>
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+                            <input type="email" class="form-control" placeholder="新邮箱"  name="email" id="newEmail">
+                        </div>
+                        <div class="error"><span id="emailError"></span></div>
+                        <div class="radio">
+                            <span>性别：</span>
+                            <label>
+                                <input type="radio" name="sex"  value="0" checked>男
+                            </label>
+                            <label>
+                                <input type="radio" name="sex"  value="1" >女
+                            </label>
+                            <button type="button" class="btn btn-default" onclick="modifyInfo()">提交信息
+                            </button>
+                        </div>
+                    </div>           
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal -->
     </body>
     <script src="__STATIC__/js/jquery.min.js"></script>
     <script src="__STATIC__/js/bootstrap.min.js"></script>

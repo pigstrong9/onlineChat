@@ -8,11 +8,13 @@ use \think\Session;
 use think\View;
 
 class User extends Controller {
+
     //返回登录页面
     public function login() {
         $view = new View;
         return $view->fetch();
     }
+
     //执行注册操作,将客户端发送的消息保存如数据库
     public function registerAction() {
         $username = $_POST['username'];
@@ -37,6 +39,7 @@ class User extends Controller {
             return 1;
         }
     }
+
     //执行登陆操作,将客户端发送的用户记录与数据库进行校对
     public function loginAction() {
         $email = $_POST['email'];
@@ -56,6 +59,7 @@ class User extends Controller {
             return 1;
         }
     }
+
     //执行注销操作
     public function logout() {
         if (Session::has('user')) {
@@ -69,7 +73,30 @@ class User extends Controller {
         $view = new View;
         return $view->fetch('User/login');
     }
-  
-  
+
+    public function modifyInfo() {
+        $user = Session::get('user');
+        $email = $_POST['email'];
+        $username = $_POST['username'];
+        $sex = $_POST['sex'];
+        $id = $user->id;
+        //进行用户名查重
+        if (Users::get(['email' => $email]) == null || $email == $user->email) {
+            //进行邮箱查重
+            if (Users::get(['username' => $username]) == null || $username == $user->username) {
+                $newUser = Users::get($id);
+                $newUser->username = $username;
+                $newUser->email = $email;
+                $newUser->save();
+                $newUser = Users::get($id);
+                Session::set('user', $newUser);
+                return 0;
+            } else {
+                return 2;
+            }
+        } else {
+            return 1;
+        }
+    }
 
 }

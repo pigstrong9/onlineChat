@@ -95,6 +95,7 @@ class User extends Controller {
                 $newUser = Users::get($id);
                 $newUser->username = $username;
                 $newUser->email = $email;
+                $newUser->sex = $sex;
                 $newUser->save();
                 $newUser = Users::get($id);
                 Session::set('user', $newUser);

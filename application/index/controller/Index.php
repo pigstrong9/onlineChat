@@ -46,8 +46,13 @@ class Index extends Controller {
     }
     //获取在线用户列表,并以json格式返回
     public function getUserList() {
+        $id=Session::get('user')->id;
         $userList = new Users();
-        $list = $userList->where('online', '1')->where('id', '<>', Session::get('user')->id)->select();
+        $user=Users::get($id);
+        $user->lastTime=time();
+        $user->save();
+        $list = $userList->where('online', '1')->where('id', '<>', $id)->where('lastTime','>',time()-10)->select();
+        $userList->where('lastTime','<',time()-10)->update(['online' => 0]);
         return $list;
     }
     //获取未读消息条数
